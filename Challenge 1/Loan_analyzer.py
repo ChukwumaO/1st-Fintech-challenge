@@ -161,10 +161,9 @@ loans = [
 inexpensive_loans = []
 
 # Looping through all the loans to append any that cost $500 or less to the `inexpensive_loans` list
-for loans_price in loans:
-    list_of_loans = loans_price["loan_price"]
-    if list_of_loans <= 500:
-        inexpensive_loans.append(list_of_loans)
+for loan in loans:
+    if loan.get("loan_price") <= 500:
+        inexpensive_loans.append(loan)
 print(f"The inexpensive loans are: {inexpensive_loans}")
 
 
@@ -183,14 +182,19 @@ Output this list of inexpensive loans to a csv file
 
 """
 
-###output_path = Path("inexpensive_loans.csv")
-
-# @TODO: Use the csv library and `csv.writer` to write the header row
+# Using the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
+
+
+from pathlib import Path
 import csv
 
-with open("inexpensive_loans.csv", "w", newline="") as csvfile:
-    header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
-    thewriter = csv.DictWriter(csvfile, fieldnames=inexpensive_loans)
-    thewriter.writeheader()
+
+header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
+output_path = Path("inexpensive_loans.csv")
+with open(output_path, 'w', newline='') as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(header)    
+    for row in inexpensive_loans:        
+        csvwriter.writerow(row.values())
 
