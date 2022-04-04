@@ -1,7 +1,8 @@
 def main():
     print("Hello my name is Chukwuma Ochu")
 
-
+from pathlib import Path
+import csv
 
 """Part 1: Automate the Calculations.
 
@@ -185,9 +186,6 @@ Output this list of inexpensive loans to a csv file
 # Using the csv library and `csv.writer` to write the header row
 # and each row of `loan.values()` from the `inexpensive_loans` list.
 
-
-from pathlib import Path
-import csv
 
 
 header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
