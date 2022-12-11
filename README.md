@@ -1,1 +1,1 @@
-# 1st-Fintech-challenge
+# Loan Analyzer
